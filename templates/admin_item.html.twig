@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <link href="{{constant('ECweb\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+    <title>商品一覧</title>
+  </head>
+
+  <body>
+  <div id = "wrapper">
+    <div>商品一覧</div>
+
+    <div id="item_detail">
+    {% for value in itemData %}
+    <table>
+      <div class="image">
+      <tr>
+      <th>画像</th>
+      <td>
+        <img src="{{constant('ECweb\\Bootstrap::ENTRY_URL_SHOP')}}images/{{value.image}}" alt="{{value.item_name}}">
+      </td>
+      </tr>
+      </div>
+
+      <div class="detail">
+        <tr>
+          <th>商品ID</th>
+          <td>{{value.item_id}}</td>
+        </tr>
+
+        <tr>
+          <th>カテゴリーID</th>
+          <td>{{value.ctg_id}}</td>
+        </tr>
+
+        <tr>
+          <th>商品名</th>
+          <td>{{value.item_name}}</td>
+        </tr>
+
+        <tr>
+          <th>詳細</th>
+          <td>{{value.detail}}</td>
+        </tr>
+
+        <tr>
+          <th>価格</th>
+          <td>&yen;{{value.price|number_format(0, '.', ',')}}</td>
+        </tr>
+
+        <tr>
+          <th>登録日時</th>
+          <td>{{value.regist_date}}</td>
+        </tr>
+        <tr>
+          <th>修正</th>
+          <td><a href ="{{constant('ECweb\\Bootstrap::ENTRY_URL_ADMIN')}}admin_item_update.php?item_id={{value.item_id}}">修正する</td>
+        </tr>
+        <br><br>
+      </div>
+    </table>
+    {% endfor %}
+    
+      <div class="cart_in">
+        <input type="button" name="back" value="戻る" onclick="history.back(); return false;">
+      </div>
+    </div>
+    </div>
+  </body>
+</html>

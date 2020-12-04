@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <link href="{{constant('ECweb\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+  </head>
+
+
+  <body>
+
+    <div id = "page_body">
+      <table border="1">
+        <tr>
+          <th>お名前（氏名）</th>
+          <td>{{mem_dataArr.family_name}}{{mem_dataArr.first_name}} 様</td>
+        </tr>
+
+        <tr>
+          <th>郵便番号</th>
+          <td>{{mem_dataArr.zip1}} - {{mem_dataArr.zip2}}</td>
+        </tr>
+
+        <tr>
+          <th>住所</th>
+          <td>{{mem_dataArr.address}}</td>
+        </tr>
+
+        <tr>
+          <th>メールアドレス</th>
+          <td>{{mem_dataArr.email}}</td>
+        </tr>
+      </table>
+    </div>
+
+  </body>
+</html>

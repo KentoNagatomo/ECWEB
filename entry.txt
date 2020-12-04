@@ -1,0 +1,17 @@
+// http://localhost/DT/ECweb/member/regist.php
+// http://localhost/DT/ECweb/admin/mem_list.php
+// http://localhost/DT/ECweb/shopping/item_list.php
+
+
+session
+login⇨$_SESSIONに入れる
+毎回クラス作成、Twigに渡す
+
+email
+Xamppから飛ばす
+（要設定）
+
+drower JS 
+ハンバーガーメニュー
+
+swaiper
