@@ -55,11 +55,16 @@ class Item
   public function getNews()
   {
     $table = ' news ';
-    $col = ' release_date, news ';
-    $where = '';
+    $col = ' release_date, news';
+    $where = 'release_date limit 5';
     $arrVal = []; 
     
     $res = $this->db->select($table, $col, $where, $arrVal);
+    foreach($res as $key => $value){
+      $modified[$key] = $value['release_date'];
+    }
+    array_multisort($modified, SORT_DESC, $res);
     return($res !== false && count($res) !== 0) ? $res : false;
   }
+
 }

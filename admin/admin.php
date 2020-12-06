@@ -1,6 +1,7 @@
 <?php
 // http://localhost/DT/ECweb/admin/admin.php
 namespace ECweb\admin;
+session_start();
 
 require_once dirname(__FILE__) . './../Bootstrap.class.php';
 use ECweb\lib\PDODatabase;
@@ -34,13 +35,18 @@ $dataArr['loginflg'] = $admin_login->checklogin($dataArr);
 
 
 if($dataArr['loginflg'] === true){
-  $admin_login->setLoginflg($dataArr['staff_id']);
-  $template = 'admin_top.html.twig';
+  $get_staff_no = $admin_login->getstaff_no($dataArr);
+  $staff_no = $get_staff_no[0]['staff_no'];
+  $get_staff_name = $admin_login->selectname($staff_no);
+  $staff_name = $get_staff_name[0]['staff_name'];
+  $_SESSION['staff_no'] = $staff_no;
+  $_SESSION['login_flg'] = "1";
+  $_SESSION['staff_name'] = $staff_name;
+  header('Location:' . Bootstrap::ENTRY_URL_ADMIN . 'admin_top.php');
 } else {
   $template = 'admin.html.twig';
+  $context = [];
+  $context['dataArr'] = $dataArr;
+  $template = $twig->loadTemplate($template);
+  $template->display($context);
 }
-
-$context = [];
-$context['dataArr'] = $dataArr;
-$template = $twig->loadTemplate($template);
-$template->display($context);

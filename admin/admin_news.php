@@ -39,5 +39,6 @@ if($_POST !== []){
 
   $context = [];
   $context['newsArr'] = $newsArr;
+  $context['session'] = $_SESSION;
   $template = $twig->loadTemplate($template);
   $template->display($context);

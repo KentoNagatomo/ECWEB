@@ -1,6 +1,6 @@
 html{
     background-color: rgb(245, 224, 171);
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -195,4 +195,11 @@ footer #footer_navi{
 #copyright {
     text-align: center;
     background-color: #fe5e02;
+}
+
+.page_body {
+    min-height: 450px;
+}
+#page_body {
+    min-height: 450px;
 }

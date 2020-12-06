@@ -6,22 +6,16 @@
   </head>
   
   <body>
-    <header>
-        {% include 'header_login_top.html.twig' %}
-    </header>
 
-    <div class = "page_body">
+    <div id = "page_body">
       <div>
         ログアウトしますか？
       </div>
 
-      <form method = "post" action = "logout.php">
+      <form method = "post" action = "admin_logout.php">
       <input type="submit" name="logout" value="ログアウト">
       </form>
     </div>
 
-    <div>
-      {% include 'footer.html.twig' %}
-    </div>
   </body>
 </html>

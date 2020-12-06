@@ -41,7 +41,6 @@ class Login
     return $res = $this->db->select($table, $col, $where, $arrVal);
   }
 
-
   public function check_Login_session()
   {
     if(isset($_SESSION['customer_no']) === false){

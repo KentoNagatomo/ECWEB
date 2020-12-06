@@ -8,9 +8,12 @@
     <title>お問い合わせ</title>
   </head>
 
-  <body>
+  <header>
+  {% include 'header_common.html.twig' %}
+  </header>
 
-    <div id = "page_body">
+  <body>
+    <div class = "page_body">
       <form method="post" action="inquiry_complete.php">
         <div id="name">
           <label for="name">お名前<span class="red">*</span></label><br>

@@ -24,10 +24,10 @@ class PDODatabase
     $this->db_pass = $db_pass;
     $this->db_name = $db_name;
 
-    // $this->order = '';
-    // $this->limit = '';
-    // $this->offset = '';
-    // $this->groupby = '';
+    $this->order = '';
+    $this->limit = '';
+    $this->offset = '';
+    $this->groupby = '';
   }
 
   private function connectDB($db_host, $db_user, $db_pass, $db_name, $db_type)

@@ -1,5 +1,6 @@
 <?php
 namespace ECweb\admin;
+session_start();
 
 require_once dirname(__FILE__) . './../Bootstrap.class.php';
 
@@ -15,12 +16,19 @@ $db = new PDODatabase(Bootstrap::DB_HOST, Bootstrap::DB_USER, Bootstrap::DB_PASS
 
 $admin_login = new Admin($db);
 
+if(isset($_POST['logout']) === true){
+  $_SESSION['customer_no'] = '';
+  $_SESSION['login_flg'] = '';
+  $_SESSION['family_name'] = '';
+  $_SESSION['first_name'] = '';
+  $_SESSION['staff_no'] = '';
+  $_SESSION['staff_name'] = '';
+  header('Location:' . Bootstrap::ENTRY_URL_ADMIN . 'admin.php');
+  exit();
+}
 
+$context = [];
+$context['session'] = $_SESSION;
 
-// $admin_login->unsetLoginflg($dataArr['staff_id']);
-
-// if($_POST['logout'] === true){
-//   header('Location:' . Bootstrap::ENTRY_URL_ADMIN . 'admin_login.php');
-//   exit();
-// }
-echo 'ログアウト画面';
+$template = $twig->loadTemplate('admin_logout.html.twig');
+$template->display($context);

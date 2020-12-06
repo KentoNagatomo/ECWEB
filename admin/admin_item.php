@@ -1,6 +1,7 @@
 <?php
+namespace ECweb\admin;
+session_start();
 
-namespace ECweb\shopping;
 require_once dirname(__FILE__) . './../Bootstrap.class.php';
 
 use ECweb\Bootstrap;
@@ -23,6 +24,7 @@ $max = count($itemData);
 $context = [];
 $context['cateArr'] = $cateArr;
 $context['itemData'] = $itemData;
+$context['session'] = $_SESSION;
 
 $template = $twig->loadTemplate('admin_item.html.twig');
 $template->display($context);

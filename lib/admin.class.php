@@ -22,6 +22,19 @@ class Admin
   return $this->loginflg;
   }
 
+  public function getstaff_no($dataArr)
+  {
+    return $get_staff_no = $this->db->select('staff','staff_no','staff_id=?',[$dataArr['staff_id']]);
+  } 
+
+  public function selectname($staff_no)
+  {
+    $table = 'staff';
+    $col = ' staff_name';
+    $where = ' staff_no = ? ';
+    $arrVal = [$staff_no];
+    return $res = $this->db->select($table, $col, $where, $arrVal);
+  }
 
   public function setLoginflg($staff_id)
   {
@@ -62,4 +75,10 @@ class Admin
     $res = $this->db->select($table, $col, $where, $arrVal);
     return($res !== false && count($res) !== 0) ? $res : false;
   }
+
+  public function errorCheck($dataArr)
+  {
+    return $get_staff_no = $this->db->select('staff','staff_no','staff_id=?',[$dataArr['staff_id']]);
+  }
+
 }

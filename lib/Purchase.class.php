@@ -32,4 +32,50 @@ class Purchase
     $arrVal = [$customer_no];
     return $this->db->select($table, $column, $where, $arrVal);
   }
+  
+  public function sales_view($timeArr)
+  {
+    $table = 'purchase';
+    
+    $colum =  " purchased_id, "
+              ." purchase_unit, "
+              ." customer_no, "
+              ." item_id, "
+              ." item_name, "
+              ." price, "
+              ." image, "
+              ." quantity, "
+              ." regist_date ";
+    $where = "regist_date between ? and ?";
+    $arrVall = [$timeArr['from'], $timeArr['to']];
+    
+    return $dataArr = $this->db->select($table,$colum,$where,$arrVall);
+  }
+
+  public function csv_output($headingArr,$salesArr,$fileName)
+  {
+    $dirPath = "{{constant('ECweb\\Bootstrap::ENTRY_URL')}}CSV"; 
+    // ディレクトリの作成
+    if(!file_exists($dirPath)){
+      mkdir($dirPath,0700);
+    }
+    // ファイルの作成
+    $createCsvFilePath = $dirPath."/".$fileName.".csv";
+    if(!file_exists($createCsvFilePath)){
+      touch($createCsvFilePath);
+    }
+    $createCsvFile = fopen($createCsvFilePath, "w");
+    if($createCsvFile){
+      foreach($headingArr as $line){
+        fputcsv($createCsvFile, $line);
+      }
+    }
+    $createCsvFile = fopen($createCsvFilePath, "a");
+    if($createCsvFile){
+      foreach($salesArr as $line){
+        fputcsv($createCsvFile, $line);
+      }
+    }
+    fclose($createCsvFile);
+  } 
 }

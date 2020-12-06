@@ -22,9 +22,16 @@ $twig = new \Twig_Environment($loader, [
 $login->check_Login_session();
 
 // ログイン済ユーザかどうか分岐
-$template = ($_SESSION['login_flg'] === "1")?
-'cart.html.twig' : 'request_login.html.twig';
-  
+if($_SESSION['login_flg'] === "1"){
+  $template = 'cart.html.twig';
+} else {
+  $template = 'request_login.html.twig';
+  $context = [];
+  $context['session'] = $_SESSION;
+  $template = $twig->loadTemplate($template);
+  $template->display($context);
+  exit();
+}
 
 $item_id = (isset($_GET['item_id']) === true && preg_match('/^\d+$/', $_GET['item_id']) === 1) ? $_GET['item_id'] : '';
 

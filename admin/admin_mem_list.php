@@ -1,6 +1,7 @@
 <?php
 // http://localhost/DT/ECweb/admin/mem_list.php
 namespace ECweb\admin;
+session_start();
 
 require_once dirname(__FILE__) . './../Bootstrap.class.php';
 
@@ -33,5 +34,6 @@ $arrVall = [];
   
   $context = [];
   $context['dataArr'] = $dataArr;
+  $context['session'] = $_SESSION;
   $template = $twig->loadTemplate('admin_mem_list.html.twig');
   $template->display($context);
