@@ -84,7 +84,7 @@
   + ` [ec2-user@ip-10-0-10-10 ~]$ ls `
 + 3ファイルをDocumentRoot配下に
   ` [ec2-user@ip-10-0-10-10 ~]$ sudo mv composer.json composer.lock vendor /var/www/html/ `
-+ 移動して、あるか確認
++ 移動して、あるか確認。
   ` [ec2-user@ip-10-0-10-10 ~]$ cd /var/www/html/`
   ` [ec2-user@ip-10-0-10-10 ~]$ ls `
 
