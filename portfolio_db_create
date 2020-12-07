@@ -153,14 +153,13 @@ CREATE TABLE item (
   index item_idx( ctg_id )
 );
 
-INSERT INTO category (ctg_id, category_name, regist_date)VALUES ( 1, '野菜',NOW() );
+INSERT INTO category (ctg_id, category_name, regist_date)VALUES ( 1, '果物',NOW() );
 INSERT INTO category (ctg_id, category_name, regist_date)VALUES ( 2, '果物',NOW() );
 INSERT INTO category (ctg_id, category_name, regist_date)VALUES ( 3, '牛肉',NOW() );
-INSERT INTO category (ctg_id, category_name, regist_date)VALUES ( 4, '豚肉',NOW() );
-INSERT INTO category (ctg_id, category_name, regist_date)VALUES ( 5, '鶏肉',NOW() );
-INSERT INTO category (ctg_id, category_name, regist_date)VALUES ( 6, 'お米',NOW() );
+INSERT INTO category (ctg_id, category_name, regist_date)VALUES ( 4, '鶏肉',NOW() );
+INSERT INTO category (ctg_id, category_name, regist_date)VALUES ( 5, 'お米',NOW() );
 
-INSERT INTO item (item_id, item_name, detail, price, image, ctg_id, regist_date) VALUES ( 1,  'たまねぎ', '染色体数は2n=16。生育適温は20℃前後で、寒さには強く氷点下でも凍害はほとんど見られないが、25℃以上の高温では生育障害が起こる。', 100, 'tamanegi.jpg', 1 , NOW());
+INSERT INTO item (item_id, item_name, detail, price, image, ctg_id, regist_date) VALUES ( 1,  'カラーピーマン（500g)', '', 630, 'tamanegi.jpg', 1 , NOW());
 
 INSERT INTO item  (item_id, item_name, detail, price, image, ctg_id, regist_date) VALUES ( 2,  'にんじん', '細長い東洋系品種と、太く短い西洋系品種の2種類に大別され、ともに古くから薬や食用としての栽培が行われてきた。', 150, 'ninjin.jpg', 1, NOW());
 

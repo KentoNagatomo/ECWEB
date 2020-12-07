@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link href="{{constant('ECweb\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes">
   <title>南国農園</title>
   </head>
   
@@ -17,10 +18,10 @@
 
   <!-- ログイン 共通部分 main_visual-->
     <div id = "main_visual">
-      <img src = "{{constant('ECweb\\Bootstrap::ENTRY_URL')}}img/top_img.jpeg" alt="宮崎の太陽をたくさん浴びた山の幸をあなたにお届けします">
+      <img src = "{{constant('ECweb\\Bootstrap::ENTRY_URL')}}images/IMG_3052.jpeg" alt="宮崎の太陽をたくさん浴びた山の幸をあなたにお届けします">
     </div>
     
-<div class="swiper-container">
+{# <div class="swiper-container">
    <div class="swiper-wrapper">
      <div class="swiper-slide"><img src="./images/nature-1.jpg" alt=""></div>
      <div class="swiper-slide"><img src="./images/nature-2.jpg" alt=""></div>
@@ -28,21 +29,20 @@
    </div>
    <div class="swiper-button-prev"></div>
    <div class="swiper-button-next"></div>
-</div>
+</div> #}
 
   <!-- 非ログイン/ログイン 共通部分 lead -->
     <section id = "lead">
       <h2>宮崎の農作物をお届けします</h2>
-      <p>太陽をたくさん浴びた宮崎の幸を産地より直送します。太陽をたくさん浴びた宮崎の幸を産地より直送します。<br>
-        太陽をたくさん浴びた宮崎の幸を産地より直送します。太陽をたくさん浴びた宮崎の幸を産地より直送します。<br>
-        太陽をたくさん浴びた宮崎の幸を産地より直送します。太陽をたくさん浴びた宮崎の幸を産地より直送します。<br></p>
+      <div>宮崎県は九州の南東部に位置し、温暖な気候に恵まれた「太陽と緑の国」です。<br>
+      野菜、果物、牛肉、鶏肉、お米など宮崎の自然から育まれた幸を産地より直送いたします。<br></div>
+        <div></div>
     </section>
 
   <!-- 非ログイン/ログイン 共通部分 searchbar -->
     <div id = "search">
       <form id= "search_bar" action="{{constant('ECweb\\Bootstrap::ENTRY_URL_SHOP')}}item_list.php?item_name={{result.item_name}}" >
         <table>
-          <th>商品検索</th>
           <td>
             <input type="text" name="item_name" value="{{searchWord.item_name}}" size="30">
           </td>
@@ -64,7 +64,7 @@
         {% for value in dataArr %}
         <div class="item">
           <ul>
-            <li class="image"><a href="{{constant('ECweb\\Bootstrap::ENTRY_URL_SHOP')}}detail_item.php?item_id={{value.item_id}}"><img src="{{constant('ECweb\\Bootstrap::ENTRY_URL_SHOP')}}images/{{value.image}}" alt="{{value.item_name}}"></a></li>
+            <li class="image"><a href="{{constant('ECweb\\Bootstrap::ENTRY_URL_SHOP')}}detail_item.php?item_id={{value.item_id}}"><img class="photo" src="{{constant('ECweb\\Bootstrap::ENTRY_URL_SHOP')}}images/{{value.image}}" alt="{{value.item_name}}"></a></li>
 
             <li class="name"><a href="{{constant('ECweb\\Bootstrap::ENTRY_URL_SHOP')}}detail_item.php?item_id={{value.item_id}}">{{value.item_name}}</a></li>
             
@@ -75,6 +75,15 @@
         </div>
         {% endfor %}
       </section>
+
+      {# <div id= "page_nation">
+      <ul>
+      {% set k = pageArr.maxpage %}
+      {% for i in range(1,k) %}
+        <li><a href = "{{constant('ECweb\\Bootstrap::ENTRY_URL_SHOP')}}item_list.php?page=">{{ i }}</a></li>
+      {% endfor %}
+      </ul>
+      </div> #}
     </div>
 
     <div id = "news">
@@ -85,7 +94,6 @@
             <dt>{{value.release_date}}</dt>
             <dd>{{value.news}}</dl>
           </dl>
-
         {% endfor %}
       </div>
     </div>

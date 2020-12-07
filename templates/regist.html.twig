@@ -3,7 +3,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    {# <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> #}
 
     <script src="{{constant('ECweb\\Bootstrap::ENTRY_URL')}}js/common.js"></script>
 
@@ -78,7 +78,8 @@
 
         <tr>
           <th>郵便番号<span class="red">*</span></th>
-            <td><input type="text" name="zip1" value="{{dataArr.zip1}}" id="zip1" size="3" maxlength="3">-<input type="text" name="zip2" value="{{dataArr.zip2}}" id="zip2" size="4" maxlength="4"><input type="button" name="address_search" value="〒から住所を入力" id="address_search">
+            <td><input type="text" name="zip1" value="{{dataArr.zip1}}" id="zip1" size="3" maxlength="3">-<input type="text" name="zip2" value="{{dataArr.zip2}}" id="zip2" size="4" maxlength="4">
+            {# <input type="button" name="address_search" value="〒から住所を入力" id="address_search"> #}
             {% if errArr.zip1 | length > 0 %}<br><span class="red">{{errArr.zip1}}</span>{% endif %}
             {% if errArr.zip2 | length > 0 %}<br><span class="red">{{errArr.zip2}}</span>{% endif %}
             </td>
@@ -111,7 +112,7 @@
         </tr>
 
         <tr>
-          <th><a href = "{{constant('ECweb\\Bootstrap::ENTRY_URL')}}policy/privacy_policy.html.twig" target = "_blank">個人情報の取扱い</a><span class="red">*</span></th>
+          <th><a href = "{{constant('ECweb\\Bootstrap::ENTRY_URL')}}policy/privacy_policy.html" target = "_blank">個人情報の取扱い</a><span class="red">*</span></th>
           <td>
             {% for index, label in agreeArr %}
             <input type="checkbox" name="agree" value="1" id="agree" {% if index in dataArr.agree %} checked="checked" {% endif %}>

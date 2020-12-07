@@ -19,8 +19,7 @@
     <form method="post" action = "{{constant('ECweb\\Bootstrap::ENTRY_URL_SHOP')}}cart.php?item_id={{itemData.item_id}}">
 
     <div id="item_detail">
-      <div class="image">
-        <img src="{{constant('ECweb\\Bootstrap::ENTRY_URL_SHOP')}}images/{{itemData.image}}" alt="{{itemData.item_name}}">
+        <img class="detail_image" src="{{constant('ECweb\\Bootstrap::ENTRY_URL_SHOP')}}images/{{itemData.image}}" alt="{{itemData.item_name}}">
       </div>
 
       <div class="detail">

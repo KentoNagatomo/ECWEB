@@ -34,7 +34,6 @@ if($_SESSION['login_flg'] === "1"){
 }
 
 $item_id = (isset($_GET['item_id']) === true && preg_match('/^\d+$/', $_GET['item_id']) === 1) ? $_GET['item_id'] : '';
-
 $crt_id = (isset($_GET['crt_id']) === true && preg_match('/^\d+$/', $_GET['crt_id']) === 1) ? $_GET['crt_id'] : '';
 
 $customer_no = $_SESSION['customer_no'];
@@ -56,7 +55,6 @@ list($sumNum, $sumPrice) = $cart->getTotalItemAndSumPrice($customer_no);
 
 
 $context = [];
-// $context['customerArr'] = $customerArr;
 $context['sumNum'] = $sumNum;
 $context['sumPrice'] = $sumPrice;
 $context['dataArr'] = $dataArr;

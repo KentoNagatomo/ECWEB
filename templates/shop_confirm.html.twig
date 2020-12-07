@@ -21,7 +21,7 @@
       {% for value in dataArr %}
       <div class="item">
         <ul>
-          <li class="image"><img src="{{constant('ECweb\\Bootstrap::ENTRY_URL_SHOP')}}images/{{value.image}}" alt="{{value.item_name}}"></li>
+          <li class="image"><img class = "detail_image" src="{{constant('ECweb\\Bootstrap::ENTRY_URL_SHOP')}}images/{{value.image}}" alt="{{value.item_name}}"></li>
 
           <li class="name">{{value.item_name}}</li>
 
@@ -30,11 +30,6 @@
         </ul>
       </div>
       {% endfor %}
-
-      <div>
-      お客様情報<br>
-        {% include 'shop_confirm_mem.html.twig' %}
-      </div>
 
       <div>
       購入しますか？
