@@ -9,17 +9,39 @@ class Cart
   public function __construct($db = null)
   { $this->db = $db; }
   
-  public function insCartData($customer_no, $item_id)
+  public function insCartData($customer_no, $item_id, $num)
   {
     $table = ' cart ';
     $insData = [
       'customer_no' => $customer_no,
       'item_id' => $item_id,
+      'num' => $num,
       'regist_date' => date("Y-m-d H:i:s")
     ];
     return $this->db->insert($table, $insData);
   }
-
+  
+  public function CheckCartData($customer_no, $item_id)
+  {
+    $table = ' cart ';
+    $column = ' crt_id, num ';
+    $where = ' customer_no=? AND item_id=? AND delete_flg=?';
+    $arrWhereVal = [$customer_no, $item_id, 0];
+    return $res =  $this->db->select($table, $column, $where, $arrWhereVal);
+  }
+  
+  public function ChangeItemNum($cart_id, $num)
+  {
+    $table = ' cart ';
+    $insData = [
+      'crt_id' => $cart_id,
+      'num' => $num,
+      'update_date' => date("Y-m-d H:i:s")
+    ];
+    $where = "crt_id=?";
+    $arrWhereVal = [$cart_id];
+    return $resb = $this->db->update($table, $insData, $where, $arrWhereVal);
+  }
 
   public function getCartData($customer_no)
   {
@@ -30,21 +52,21 @@ class Cart
     return $this->db->select($table, $column, $where, $arrVal);
   }
 
-  public function delCartData($crt_id)
-  {
-    $table = ' cart ';
-    $insData = ['delete_flg' => 1];
-    $where = ' crt_id = ? ';
-    $arrWhereVal = [$crt_id];
-    return $this->db->update($table, $insData, $where, $arrWhereVal);
-  }
+  // public function reduceCartData($crt_id)
+  // {
+  //   $table = ' cart ';
+  //   $insData = ['delete_flg' => 1];
+  //   $where = ' crt_id = ? ';
+  //   $arrWhereVal = [$crt_id];
+  //   return $this->db->update($table, $insData, $where, $arrWhereVal);
+  // }
   
-  public function clearCart($customer_no)
+  public function clearCart($customer_no, $cart_id)
   {
     $table = ' cart ';
     $insData = ['delete_flg' => 1];
-    $where = ' customer_no = ? ';
-    $arrWhereVal = [$customer_no];
+    $where = ' customer_no = ? AND crt_id=?';
+    $arrWhereVal = [$customer_no, $cart_id];
     return $this->db->update($table, $insData, $where, $arrWhereVal);
   }
   
@@ -57,19 +79,14 @@ class Cart
     return $this->db->select($table, $column, $where, $arrWhereVal);
   }
 
-  public function getTotalItemAndSumPrice($customer_no)
+  public function getTotalnum($customer_no)
   {
-    $table = "cart c LEFT JOIN item i ON c.item_id = i.item_id";
-    $column = " SUM( i.price ) AS totalPrice ";
-    $where = ' c.customer_no= ? AND c.delete_flg= ?';
-    $arrWhereVal = [$customer_no, 0];
-    $res = $this->db->select($table, $column, $where, $arrWhereVal);
-    $price  = ($res !== false && count($res) !== 0) ? $res[0]['totalPrice'] : 0;
 
     $table = ' cart c';
     $column = 'SUM( num ) AS num';
+    $where = ' c.customer_no= ? AND c.delete_flg= ?';
+    $arrWhereVal = [$customer_no, 0];
     $res = $this->db->select($table, $column, $where, $arrWhereVal);
-    $num = ($res !== false && count($res) !== 0) ? $res[0]['num'] : 0;
-    return [$num, $price];
+    return $num = ($res !== false && count($res) !== 0) ? $res[0]['num'] : 0;
   }
 }

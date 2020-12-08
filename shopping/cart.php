@@ -33,30 +33,48 @@ if($_SESSION['login_flg'] === "1"){
   exit();
 }
 
+
 $item_id = (isset($_GET['item_id']) === true && preg_match('/^\d+$/', $_GET['item_id']) === 1) ? $_GET['item_id'] : '';
 $crt_id = (isset($_GET['crt_id']) === true && preg_match('/^\d+$/', $_GET['crt_id']) === 1) ? $_GET['crt_id'] : '';
 
 $customer_no = $_SESSION['customer_no'];
 
 if($item_id !== ''){
-  $res = $cart->insCartData($customer_no, $item_id);
-  if($res === false){
-    echo "商品カート登録に失敗しました。";
-    exit();
+  $cartCheck = $cart->CheckCartData($customer_no, $item_id);
+    if(isset($cartCheck[0]) === true){
+    $cart_id = $cartCheck[0]['crt_id'];
+    $num = $cartCheck[0]['num'] + 1;
+    if($num > 10){ $num =10; }
+    $num_change = $cart->ChangeItemNum($cart_id, $num);
+    } else {
+      $res = $cart->insCartData($customer_no, $item_id, $num=1);
+      if($res === false){
+      echo "商品カート登録に失敗しました。";
+      exit();
+      }
+    }
   }
+
+if(isset($_GET['reduce']) == true){
+  $item_id = $_GET['reduce'];
+  $cartCheck = $cart->CheckCartData($customer_no, $item_id);
+  if(isset($cartCheck[0]) === true){
+  $cart_id = $cartCheck[0]['crt_id'];
+  $num = $cartCheck[0]['num'] -1 ;
+   if($num == 0){
+     $del = $cart->clearCart($customer_no, $cart_id);
+   }
+  $res = $cart->ChangeItemNum($cart_id, $num);
+}
 }
 
-if($crt_id !== ''){
-  $res = $cart->delCartData($crt_id);
-}
 
 $dataArr = $cart->getCartData($customer_no);
-list($sumNum, $sumPrice) = $cart->getTotalItemAndSumPrice($customer_no);
+$sumNum = $cart->getTotalnum($customer_no);
 
 
 $context = [];
 $context['sumNum'] = $sumNum;
-$context['sumPrice'] = $sumPrice;
 $context['dataArr'] = $dataArr;
 $context['session'] = $_SESSION;
 

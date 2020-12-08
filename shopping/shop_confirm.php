@@ -30,7 +30,7 @@ if(empty($dataArr) === true){
   header('Location:' . Bootstrap::ENTRY_URL_SHOP . 'item_list.php');
 } 
 
-list($sumNum, $sumPrice) = $cart->getTotalItemAndSumPrice($customer_no);
+$sumNum = $cart->getTotalnum($customer_no);
 
 $table = ' member ';
 $colum =  " mem_no, "
@@ -46,7 +46,6 @@ $mem_dataArr = $db->select($table,$colum,$where,$arrVall);
 
 $context = [];
 $context['sumNum'] = $sumNum;
-$context['sumPrice'] = $sumPrice;
 $context['dataArr'] = $dataArr;
 $context['mem_dataArr'] = $mem_dataArr[0];
 $context['session'] = $_SESSION;

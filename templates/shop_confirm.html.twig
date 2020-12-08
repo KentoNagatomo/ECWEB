@@ -15,7 +15,7 @@
       <div id="cart_list">
         <p>ご購入内容確認</p>
         <a href="{{constant('ECweb\\Bootstrap::ENTRY_URL_SHOP')}}cart.php">カートへ戻る</a>
-        <p>カート内商品数：{{sumNum}}個　合計金額：&yen;{{sumPrice|number_format(0, '.', ',')}}</p>
+        <p>カート内商品数：{{sumNum}}個</p>
       </div>
 
       {% for value in dataArr %}
