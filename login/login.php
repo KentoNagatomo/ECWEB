@@ -32,6 +32,15 @@ if(empty($_POST) !== true){
     ];
 }
 
+if(isset($_POST['guest_login'])===true){
+  $_SESSION['customer_no'] = 1;
+  $_SESSION['login_flg'] = "1";
+  $_SESSION['family_name'] = "永友";
+  $_SESSION['first_name'] = "健斗";
+  header('Location:' . Bootstrap::ENTRY_URL_SHOP . 'item_list.php');
+  exit();
+}
+
 $res = $login->checklogin($dataArr);
 
 if($res === true){

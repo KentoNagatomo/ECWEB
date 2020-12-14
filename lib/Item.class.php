@@ -29,13 +29,20 @@ class Item
     return ($res !== false && count($res) !== 0)? $res : false;
   }
 
+  // public function getSearchItemList($searchWord)
+  // {
+  //   $table = ' item ';
+  //   $col = ' item_id, item_name, price, image ';
+  //   $where = ($searchWord !== []) ? ' item_name like ? ': '';
+  //   $arrVal = ($searchWord !== [])? ['%'.$searchWord['item_name'].'%'] : [];
+  //   $res = $this->db->select($table,$col,$where,$arrVal);
+  //   return ($res !== false && count($res) !== 0)? $res : false;
+  // }
+
   public function getSearchItemList($searchWord)
   {
     $table = ' item ';
     $col = ' item_id, item_name, price, image ';
-    // $where = ($searchWord !== []) ? ' item_name like ? ': '';
-    // $arrVal = ($searchWord !== [])? ['%'.$searchWord['item_name'].'%'] : [];
-    // 詳細からも検索可能へ↓
     $where = ($searchWord !== []) ? ' item_name like ? OR detail like ? ': '';
     $arrVal = ($searchWord !== [])? ['%'.$searchWord['item_name'].'%' , '%'.$searchWord['item_name'].'%'] : [];
 

@@ -36,7 +36,7 @@ $purchase_unit = 'A' . strtotime("now");
   for($i=0; $i<$itemTypeCount; $i++){
     $ins = $purchase->insPurchase($dataArr[$i],$purchase_unit);
   }
-$delcart = $cart->clearCart($customer_no);
+$delcart = $cart->clearCart($customer_no,$cart_id ="*");
 $purchase_unit_no = $cart->getPurchase_unit($customer_no);
 
 // $email->preparaEmail($dataArr,$customerArr,$purchase_unit_no);
