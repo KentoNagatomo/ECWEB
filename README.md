@@ -29,3 +29,4 @@
  + AWS(EC2,EBS,Route53), Linux, Apache, mariaDB
  + XAMPP
 # portfolio
+# EC_portfolio
