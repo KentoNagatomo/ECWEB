@@ -61,11 +61,11 @@ class Cart
   //   return $this->db->update($table, $insData, $where, $arrWhereVal);
   // }
   
-  public function clearCart($customer_no, $cart_id)
+  public function clearCart($customer_no,$cart_id)
   {
     $table = ' cart ';
     $insData = ['delete_flg' => 1];
-    $where = ' customer_no = ? AND crt_id=?';
+    $where = ' customer_no = ? AND $crt_id = ?';
     $arrWhereVal = [$customer_no, $cart_id];
     return $this->db->update($table, $insData, $where, $arrWhereVal);
   }
